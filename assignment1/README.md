@@ -1,5 +1,3 @@
-# ${1:Assignment 1}
-
 ## Compilation
 
 run `make`
@@ -8,10 +6,6 @@ run `make test`
 ## Current Design
 
 current design can be viewed in `design.jpeg`
-
-<p align="center">
-<img src="https://github.com/abdallah95/eece437SwArch/blob/master/assignment1/design.jpeg" alt="Design" width="600px">
-</p>
 
 ## Current Issues
 
