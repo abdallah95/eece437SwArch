@@ -1,0 +1,21 @@
+# ${1:Assignment 1}
+
+## Compilation
+
+run `make`
+run `make test`
+
+## Current Design
+
+current design can be viewed in `design.jpeg`
+
+<p align="center">
+<img src="https://github.com/abdallah95/eece437SwArch/blob/master/assignment1/design.jpeg" alt="Design" width="600px">
+</p>
+
+## Current Issues
+
+1. Operation on two different types not forcing compilation error unless the type of arguments don't agree to the type
+of parametes passed based on the classes hierarchy.
+2. Type class is not fully supported designed yet.
+
