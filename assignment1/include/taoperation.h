@@ -4,7 +4,8 @@
 #include "ta.h"
 
 class TAOperation: public TA {
-
+public:
+	TAOperation(string name = "");
 };
 
 #endif

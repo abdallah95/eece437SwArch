@@ -5,12 +5,14 @@ BUILD_DIR := build/
 CPP_FILES := $(wildcard src/*.cpp)
 OBJ_FILES := $(addprefix build/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-all: build_dir $(OBJ_FILES)
+build: build_dir $(OBJ_FILES)
+
+all: build test
 
 build_dir:
 	mkdir -p build
 
-build/%.o: src/%.cpp
+build/%.o: src/%.cpp include/%.h
 	$(CXX) -c -o $@ $< -I $(INCLUDE)
 
 test: test.cpp build_dir $(OBJ_FILES)

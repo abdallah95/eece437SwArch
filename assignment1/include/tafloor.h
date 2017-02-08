@@ -3,8 +3,9 @@
 
 #include "taoperationunary.h"
 #include "tadouble.h"
+#include "taint.h"
 
-class TAFloor: public TAOperationUnary {
+class TAFloor: public TAOperationUnary, public TAInt {
 public:
 	TAFloor(TADouble&);
 };

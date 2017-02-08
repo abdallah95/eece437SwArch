@@ -1,6 +1,6 @@
 #include "taceiling.h"
 
 
-TACeiling::TACeiling(TADouble& operand): TAOperationUnary(operand) {
+TACeiling::TACeiling(TADouble& operand): TAOperationUnary(operand,"ceiling") {
 
 } 

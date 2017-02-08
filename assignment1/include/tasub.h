@@ -2,11 +2,13 @@
 #define TASUB_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 
-class TASub: public TAOperationBinary {
+class TASub: public TAOperationBinary, public TADouble {
 public:
-	TASub(TAPrimitive&, TAPrimitive&);
+	TASub(TAInt&, TAInt&);
+	TASub(TADouble&, TADouble&);
 };
 
 #endif

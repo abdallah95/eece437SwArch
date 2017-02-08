@@ -2,12 +2,14 @@
 #define TALESSTHAN_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 #include "tabool.h"
 
 class TALessThan: public TAOperationBinary, public TABool {
 public:
-	TALessThan(TAPrimitive&, TAPrimitive&);
+	TALessThan(TAInt&, TAInt&);
+	TALessThan(TADouble&, TADouble&);
 };
 
 #endif

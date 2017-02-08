@@ -1,12 +1,13 @@
 #ifndef TADOUBLE_H
 #define TADOUBLE_H
 
-#include "taprimitive.h"
+#include "tadata.h"
 
-class TADouble: public TAPrimitive {
+class TADouble: public TAData {
 	double val;
 public:
-	TADouble(double val = 0);
+	TADouble(string name = "");
+	void set(double);
 };
 
 

@@ -2,11 +2,13 @@
 #define TADIV_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 
-class TADiv: public TAOperationBinary, public TAPrimitive {
+class TADiv: public TAOperationBinary, public TADouble {
 public:
-	TADiv(TAPrimitive&, TAPrimitive&);
+	TADiv(TAInt&, TAInt&);
+	TADiv(TADouble&, TADouble&);
 };
 
 #endif

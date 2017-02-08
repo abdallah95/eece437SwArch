@@ -1,6 +1,10 @@
 #include "taint.h"
 
 
-TAInt::TAInt(int val): val(val) {
+TAInt::TAInt(string name): TAData(name){
 	
+}
+
+void TAInt::set(int val) {
+	this->val = val;
 }

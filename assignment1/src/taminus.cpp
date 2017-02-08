@@ -1,6 +1,10 @@
 #include "taminus.h"
 
 
-TAMinus::TAMinus(TAPrimitive& operand): TAOperationUnary(operand) {
+TAMinus::TAMinus(TAInt& operand): TAOperationUnary(operand,"-") {
 
-} 
+}
+
+TAMinus::TAMinus(TADouble& operand): TAOperationUnary(operand,"-") {
+
+}

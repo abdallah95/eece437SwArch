@@ -3,8 +3,9 @@
 
 #include "taoperationunary.h"
 #include "tadouble.h"
+#include "taint.h"
 
-class TACeiling: public TAOperationUnary, public TADouble {
+class TACeiling: public TAOperationUnary, public TAInt {
 public:
 	TACeiling(TADouble&);
 };

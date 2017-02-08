@@ -2,14 +2,14 @@
 #define TAADD_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 
-class TAAdd: public TAOperationBinary {
-
-//	static const TAAdd taadd_type;
+class TAAdd: public TAOperationBinary, public TADouble {
 
 public:
-	TAAdd(TAPrimitive&, TAPrimitive&);
+	TAAdd(TAInt&, TAInt&);
+	TAAdd(TADouble&, TADouble&);
 };
 
 #endif

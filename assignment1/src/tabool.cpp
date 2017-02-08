@@ -3,6 +3,10 @@
 
 
 
-TABool::TABool(bool val): val(val){
+TABool::TABool(string name): TAData(name){
 	
+}
+
+void TABool::set(bool val){
+	this->val = val;
 }

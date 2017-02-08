@@ -2,11 +2,13 @@
 #define TAMUL_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 
-class TAMul: public TAOperationBinary, public TAPrimitive {
+class TAMul: public TAOperationBinary, public TADouble {
 public:
-	TAMul(TAPrimitive&, TAPrimitive&);
+	TAMul(TAInt&, TAInt&);
+	TAMul(TADouble&, TADouble&);
 };
 
 #endif

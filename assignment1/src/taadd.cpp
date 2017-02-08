@@ -1,7 +1,10 @@
 #include "taadd.h"
 
 
-TAAdd::TAAdd(TAPrimitive& operand_1, TAPrimitive& operand_2): TAOperationBinary(operand_1,operand_2) {
+TAAdd::TAAdd(TAInt& operand_1, TAInt& operand_2): TAOperationBinary(operand_1,operand_2,"+") {
 
 }
 
+TAAdd::TAAdd(TADouble& operand_1, TADouble& operand_2): TAOperationBinary(operand_1,operand_2,"+") {
+
+}

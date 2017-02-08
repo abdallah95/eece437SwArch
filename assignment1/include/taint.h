@@ -1,12 +1,13 @@
 #ifndef TAINT_H
 #define TAINT_H
 
-#include "taprimitive.h"
+#include "tadata.h"
 
-class TAInt: public TAPrimitive {
+class TAInt: public TAData {
 	int val;
 public:
-	TAInt(int val = 0);
+	TAInt(string name = "");
+	void set(int);
 };
 
 

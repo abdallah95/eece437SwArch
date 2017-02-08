@@ -2,11 +2,14 @@
 #define TAMORETHAN_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
+#include "tabool.h"
 
-class TAMoreThan: public TAOperationBinary, public TAPrimitive {
+class TAMoreThan: public TAOperationBinary, public TABool {
 public:
-	TAMoreThan(TAPrimitive&, TAPrimitive&);
+	TAMoreThan(TAInt&, TAInt&);
+	TAMoreThan(TADouble&, TADouble&);
 };
 
 #endif

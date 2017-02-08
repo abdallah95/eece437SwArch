@@ -3,6 +3,10 @@
 
 
 
-TADouble::TADouble(double val): val(val) {
+TADouble::TADouble(string name): TAData(name) {
 
+}
+
+void TADouble::set(double val) {
+	this->val = val;
 }

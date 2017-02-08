@@ -2,11 +2,13 @@
 #define TAMINUS_H
 
 #include "taoperationunary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 
-class TAMinus: public TAOperationUnary, public TAPrimitive {
+class TAMinus: public TAOperationUnary, public TADouble {
 public:
-	TAMinus(TAPrimitive&);
+	TAMinus(TAInt&);
+	TAMinus(TADouble&);
 };
 
 #endif

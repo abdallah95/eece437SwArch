@@ -1,16 +1,19 @@
+NOTE: Each problem submission will have its own release tag.
+
 ## Compilation
 
 run `make`
 
-run `make test`
+then, `make test`
+
+or 'make all'
 
 ## Current Design
 
-current design can be viewed in `design.jpeg`
+current design can be viewed in `design.jpeg` (outdated).
 
 ## Current Issues
 
-1. Operation on two different types is not forcing compilation error unless the types of function arguments don't agree with the type of the parametes passed following on the classes hierarchy.
+1. Having problem with diamond inheritance. I'm trying to solve it by defining interfaces.
 
 2. Type class is not fully designed yet.
-

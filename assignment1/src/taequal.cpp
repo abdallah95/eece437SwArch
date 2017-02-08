@@ -3,6 +3,10 @@
 
 
 
-TAEqual::TAEqual(TAPrimitive& operand_1, TAPrimitive& operand_2): TAOperationBinary(operand_1,operand_2) {
+TAEqual::TAEqual(TAInt& operand_1, TAInt& operand_2): TAOperationBinary(operand_1,operand_2,"=") {
+
+}
+
+TAEqual::TAEqual(TADouble& operand_1, TADouble& operand_2): TAOperationBinary(operand_1,operand_2,"=") {
 
 }

@@ -1,12 +1,13 @@
 #ifndef TABOOL_H
 #define TABOOL_H
 
-#include "taprimitive.h"
+#include "tadata.h"
 
-class TABool: public TAPrimitive {
+class TABool: public TAData {
 	bool val;
 public:
-	TABool(bool val = false);
+	TABool(string name = "");
+	void set(bool);
 };
 
 

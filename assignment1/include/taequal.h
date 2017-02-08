@@ -2,12 +2,14 @@
 #define TAEQUAL_H
 
 #include "taoperationbinary.h"
-#include "taprimitive.h"
+#include "taint.h"
+#include "tadouble.h"
 #include "tabool.h"
 
 class TAEqual: public TAOperationBinary, public TABool {
 public:
-	TAEqual(TAPrimitive&, TAPrimitive&);
+	TAEqual(TAInt&, TAInt&);
+	TAEqual(TADouble&, TADouble&);
 };
 
 #endif
