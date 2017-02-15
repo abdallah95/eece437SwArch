@@ -6,7 +6,7 @@ run `make`
 
 then, `make test`
 
-or 'make all'
+or `make all`
 
 ## Current Design
 

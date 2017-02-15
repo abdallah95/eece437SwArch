@@ -7,6 +7,9 @@
 class TAOr: public TAOperationBinary, public TABool {
 public:
 	TAOr(TABool&, TABool&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

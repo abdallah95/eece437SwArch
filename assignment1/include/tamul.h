@@ -9,6 +9,9 @@ class TAMul: public TAOperationBinary, public TADouble {
 public:
 	TAMul(TAInt&, TAInt&);
 	TAMul(TADouble&, TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

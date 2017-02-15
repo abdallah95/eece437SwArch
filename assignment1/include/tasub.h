@@ -9,6 +9,9 @@ class TASub: public TAOperationBinary, public TADouble {
 public:
 	TASub(TAInt&, TAInt&);
 	TASub(TADouble&, TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

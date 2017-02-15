@@ -9,6 +9,9 @@ class TAMinus: public TAOperationUnary, public TADouble {
 public:
 	TAMinus(TAInt&);
 	TAMinus(TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

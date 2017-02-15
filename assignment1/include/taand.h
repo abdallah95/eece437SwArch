@@ -4,9 +4,12 @@
 #include "taoperationbinary.h"
 #include "tabool.h"
 
-class TAAnd: public TAOperationBinary {
+class TAAnd: public TAOperationBinary, public TABool {
 public:
 	TAAnd(TABool&, TABool&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

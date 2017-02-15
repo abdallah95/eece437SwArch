@@ -8,6 +8,7 @@ class TABool: public TAData {
 public:
 	TABool(string name = "");
 	void set(bool);
+	bool getVal();
 };
 
 

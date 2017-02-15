@@ -1,3 +1,5 @@
 #include "taoperation.h"
 
-TAOperation::TAOperation(string name): TA(name) {}
+TAOperation::TAOperation(string name): TA(name) {
+	
+}

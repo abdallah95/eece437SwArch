@@ -10,6 +10,9 @@ class TAAdd: public TAOperationBinary, public TADouble {
 public:
 	TAAdd(TAInt&, TAInt&);
 	TAAdd(TADouble&, TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

@@ -8,6 +8,7 @@ class TADouble: public TAData {
 public:
 	TADouble(string name = "");
 	void set(double);
+	double getVal();
 };
 
 

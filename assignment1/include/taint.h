@@ -8,6 +8,7 @@ class TAInt: public TAData {
 public:
 	TAInt(string name = "");
 	void set(int);
+	int getVal();
 };
 
 

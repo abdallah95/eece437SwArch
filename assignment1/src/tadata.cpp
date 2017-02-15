@@ -1,10 +1,6 @@
 #include "tadata.h"
-#include <iostream>
 
-TAData::TAData(string name): TA(name){}
-
-void TAData::list() {
-	cout << generateRepresentation() << endl;
+TAData::TAData(string name): TA(name){
 }
 
 string TAData::generateRepresentation() {

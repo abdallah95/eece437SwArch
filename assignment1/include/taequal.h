@@ -10,6 +10,9 @@ class TAEqual: public TAOperationBinary, public TABool {
 public:
 	TAEqual(TAInt&, TAInt&);
 	TAEqual(TADouble&, TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

@@ -10,6 +10,9 @@ class TAMoreThan: public TAOperationBinary, public TABool {
 public:
 	TAMoreThan(TAInt&, TAInt&);
 	TAMoreThan(TADouble&, TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

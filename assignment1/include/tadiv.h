@@ -9,6 +9,9 @@ class TADiv: public TAOperationBinary, public TADouble {
 public:
 	TADiv(TAInt&, TAInt&);
 	TADiv(TADouble&, TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif

@@ -3,12 +3,11 @@
 
 #include "ta.h"
 
-class TAData: public TA {
+class TAData: public virtual TA {
 protected:
 	virtual string generateRepresentation();
 public:
-	TAData(string name = "");
-	virtual void list();
+	TAData(string name);
 };
 
 #endif

@@ -3,9 +3,11 @@
 
 #include "ta.h"
 
-class TAOperation: public TA {
+class TAOperation: public virtual TA {
 public:
 	TAOperation(string name = "");
+	virtual void evaluate() = 0;
+	virtual void printState() = 0;
 };
 
 #endif

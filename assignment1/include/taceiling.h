@@ -8,6 +8,9 @@
 class TACeiling: public TAOperationUnary, public TAInt {
 public:
 	TACeiling(TADouble&);
+	virtual string generateRepresentation();
+	void evaluate();
+	void printState();
 };
 
 #endif
