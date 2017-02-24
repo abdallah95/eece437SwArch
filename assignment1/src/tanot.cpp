@@ -1,13 +1,9 @@
 #include "tanot.h"
 
 
-TANot::TANot(TABool& operand): TA("!"), TAOperationUnary(operand,"!") {
+TANot::TANot(TABool& operand): TAOperationUnary(operand,"!") {
 
 } 
-
-string TANot::generateRepresentation() {
-	return TAOperationUnary::generateRepresentation();
-}
 
 void TANot::evaluate() { 
 

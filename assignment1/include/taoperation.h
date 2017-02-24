@@ -1,11 +1,15 @@
 #ifndef TAOPERATION_H
 #define TAOPERATION_H 
 
-#include "ta.h"
+#include "tadata.h"
+#include "lister.h"
+#include <string>
 
-class TAOperation: public virtual TA {
+class TAOperation: public Lister {
+protected:
+	std::string opName;
 public:
-	TAOperation(string name = "");
+	TAOperation(std::string name = "");
 	virtual void evaluate() = 0;
 	virtual void printState() = 0;
 };

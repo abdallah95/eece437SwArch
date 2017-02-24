@@ -12,7 +12,7 @@ using namespace std;
 int main(){
 
 	TAInt x("x");
-	cout<<x.getType().getSignature()<<endl;
+	TAInt x2("x");
 	TADouble d("d");
 	TACeiling y(d); // denotes y is the ceiling of d
 	TABool b("b");

@@ -5,10 +5,10 @@
 
 class TAOperationBinary: public TAOperation {
 protected:
-	TA& operand_1;
-	TA& operand_2;
+	TAData& operand_1;
+	TAData& operand_2;
 public:
-	TAOperationBinary(TA&, TA&, string name = "");
+	TAOperationBinary(TAData&, TAData&, string name = "");
 	virtual string generateRepresentation();
 };
 

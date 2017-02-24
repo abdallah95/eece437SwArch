@@ -1,5 +1,5 @@
 #include "taoperation.h"
 
-TAOperation::TAOperation(string name): TA(name) {
+TAOperation::TAOperation(string opName): opName(opName) {
 	
 }

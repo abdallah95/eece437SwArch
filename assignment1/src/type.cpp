@@ -2,8 +2,7 @@
 
 using namespace std;
 
-bool Type::isOfType(Type& t) {
-	return this->signature == t.signature;
+Type::Type(string className) {
 }
 
 string Type::getSignature() {

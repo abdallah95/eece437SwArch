@@ -1,6 +1,6 @@
 #include "tadouble.h"
 
-TADouble::TADouble(string name): TA(name), TAData(name) {
+TADouble::TADouble(string name): TAData(name) {
 
 }
 

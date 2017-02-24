@@ -1,12 +1,12 @@
 #include "taoperationbinary.h"
 
-TAOperationBinary::TAOperationBinary(TA& operand_1, TA& operand_2, string name)
-: TAOperation(name),operand_1(operand_1), operand_2(operand_2) {
+TAOperationBinary::TAOperationBinary(TAData& operand_1, TAData& operand_2, string opName)
+: TAOperation(opName),operand_1(operand_1), operand_2(operand_2) {
 	
 }
 
 
 string TAOperationBinary::generateRepresentation() {
-	return "(" + name + " " + operand_1.generateRepresentation()
+	return "(" + opName + " " + operand_1.generateRepresentation()
 	 + " " + operand_2.generateRepresentation() + " " + ")";
 }

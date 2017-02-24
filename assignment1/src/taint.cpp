@@ -1,7 +1,6 @@
 #include "taint.h"
 
-TAInt::TAInt(string name): TA(name), TAData(name){
-	this->type = Type(__FUNCTION__);
+TAInt::TAInt(string name): TAData(name){
 }
 
 void TAInt::set(int val) {

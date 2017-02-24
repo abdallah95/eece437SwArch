@@ -2,6 +2,7 @@
 #define TA_H
 
 #include "type.h"
+#include "lister.h"
 #include <string>
 #include <set>
 
@@ -15,8 +16,6 @@ protected:
 public:
 	TA(string name = "");
 	virtual Type getType();
-	virtual void list();
-	virtual string generateRepresentation() = 0;
 };
 
 #endif

@@ -5,9 +5,9 @@
 
 class TAOperationUnary: public TAOperation {
 protected:
-	TA& operand;
+	TAData& operand;
 public:
-	TAOperationUnary(TA& ,std::string name = "");
+	TAOperationUnary(TAData& ,std::string name = "");
 	virtual string generateRepresentation();
 };
 

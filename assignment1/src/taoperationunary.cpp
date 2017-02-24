@@ -1,9 +1,9 @@
 #include "taoperationunary.h"
 
-TAOperationUnary::TAOperationUnary(TA& operand, string name): TAOperation(name), operand(operand) {
+TAOperationUnary::TAOperationUnary(TAData& operand, string opName): TAOperation(opName), operand(operand) {
 	
 }
 
 string TAOperationUnary::generateRepresentation() {
-	return "(" + name + " " + operand.generateRepresentation() + " " + ")";
+	return "(" + opName + " " + operand.generateRepresentation() + " " + ")";
 }
