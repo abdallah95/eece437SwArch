@@ -1,1 +1,19 @@
 Assignment 2
+
+## Edit 1
+@By: Ahmad Yasseen
+@Date: 3/10/2017 7:00 PM
+
+We have taken the following design decisions so far:
+
+1- To cope with potential multiple inheritances, all concrete classes should occur at the same level in the inheritance hierarchy, with no inheritances between them. Moreover, no abstract class should implement any method. 
+
+2- We will implement two "interfaces" so far: Listable and Evaluable. We will consider Java conventions in defining functional interfaces. This provides better readability and makes the code less error-prone, hopefully.
+
+3- For now it seems we need to do a mass refactoring; we will try to rebuild the system almost from scratch (That's, its main class hierarchy). Yet, we may eventually reuse some of our previous code as seen appropriate. 
+
+4- We will try to do something similar to the suggestion in the Code Review document concerning the class hierarchy and spaces.
+
+###########################
+
+NOTE: PLEASE DO NOT DELETE ANY EXISTING COMMENTS. JUST ADD A NEW EDIT WITH NECESSARY INFO. 
