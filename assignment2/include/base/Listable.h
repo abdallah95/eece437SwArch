@@ -1,3 +1,5 @@
+#ifndef LISTABLE_H
+#define LISTABLE_H
 
 // @Functional Interface 
 
@@ -7,5 +9,7 @@ class Listable {
 /**
    Lists this object i.e. prints its identifying name 
 **/
-	void list();
+	virtual void list() = 0;
 };
+
+#endif

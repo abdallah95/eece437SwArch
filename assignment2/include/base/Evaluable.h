@@ -1,3 +1,5 @@
+#ifndef EVALUABLE_H
+#define EVALUABLE_H
 
 //@Functional Interface 
 
@@ -8,5 +10,7 @@ class Evaluable {
 /** 
 Evaluates the evaluable object and stores its value internally (should be retrievable by another methods).
 */
-	void evaluate() = 0;				
+	virtual void evaluate() = 0;				
 };
+
+#endif

@@ -2,7 +2,7 @@
 #define ASSIGNMENT_
 
 #include "TAStatement.h"
-#include "TAVar.h"
+#include "Expression/TAVar.h"
 
 class TAAssignmentStatement : public TAAtomicStatement {
 

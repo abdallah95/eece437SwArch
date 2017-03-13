@@ -1,7 +1,7 @@
 #ifndef SEQSTATEMENTLIST_
 #define SEQSTATEMENTLIST_
 
-#include "Statement.h"
+#include "TAStatement.h"
 
 class TASeqListOfStatements : public TAStatement {
 

@@ -1,3 +1,6 @@
+#ifndef SETTABLE_H
+#define SETTABLE_H
+
 
 /* @Functional Interface 
 
@@ -10,5 +13,7 @@ class Settable {
 
 //TODO We have to deal with the parameter type of this method; a suggestion is to create a class space that abstracts the concept of Value
 	
-	void setState ();
+	virtual void setState () = 0;
 };
+
+#endif

@@ -1,4 +1,8 @@
+#ifndef TAFORMULA_H
+#define TAFORMULA_H
+
 #include "TAExpression.h"
+#include "TAVar.h"
 
 //Represents an expression that evaluates to a Boolean value {True, False}
 //TODO Should also inherit from a type class, TABool (not implemented yet)
@@ -27,7 +31,33 @@ class TABinaryOpFormula : public TAFormula {
 //TODO Add members ...
 
 class TAConditionalFormula : public TAFormula {
-
+	TAFormula& formula1;
+	TAFormula& formula2;
+	TAFormula& formula3;
+	TABoolVar state;
+public:
+	TAConditionalFormula(TAFormula& e1, TAFormula& e2, TAFormula& e3);
+	void evaluate();
 };
 
+// for all formula
+class TAForAll : public TAFormula {
+	TAExpression expression;
+	TADomain& domain;
+	TABoolVar state;
+public:
+	TAForAll(TAExpression&, TADomain&);
+	void evaluate();
+};
 
+// there exists formula
+class TAThereExists : public TAFormula {
+	TAExpression expression;
+	TADomain& domain;
+	TABoolVar state;
+public:
+	TAThereExists(TAExpression&, TADomain&);
+	void evaluate();
+};
+
+#endif

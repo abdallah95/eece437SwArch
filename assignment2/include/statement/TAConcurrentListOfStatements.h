@@ -1,8 +1,8 @@
 #ifndef CONCURRENT_
 #define CONCURRENT_
 
-#include "Statement.h"
-#include "Expression.h"
+#include "TAStatement.h"
+#include "Expression/TAExpression.h"
 
 class TAConcurrentListOfStatements : public Statement {
 
