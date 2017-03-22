@@ -9,8 +9,8 @@
 
 class TAExpression : public Evaluable, public Listable {
 public:
-	virtual void setInput(TAVar&) = 0;
-	virtual TAVar getState() = 0;
+	virtual void setInput(TAVar*) = 0;
+	virtual TAVar* getState() = 0;
 };
 
 #endif

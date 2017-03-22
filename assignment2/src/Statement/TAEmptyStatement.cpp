@@ -1,6 +1,6 @@
-#include "statement/TAEmptyStatement.h"
+#include "Statement/TAEmptyStatement.h"
 
-static TAEmptyStatement * TAEmptyStatement :: getInstance(){
+TAEmptyStatement * TAEmptyStatement :: getInstance(){
 
 	if (instance == NULL){
 		instance = new TAEmptyStatement();

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "statement/TAAssignStatement.h"
+#include "Statement/TAAssignStatement.h"
 
 using namespace std;
 
@@ -19,9 +19,8 @@ void TAAssignStatement :: evaluate(){
 //	t -> setState (exp -> getState());	
 }
 
-void TAssignStatement :: list(){
-
-	t -> list();
+void TAAssignStatement :: list(){
+	target -> list();
 	cout << " = " ;
 	exp -> list();
 	cout << " ; ";

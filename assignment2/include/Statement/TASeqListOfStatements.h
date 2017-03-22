@@ -25,6 +25,6 @@ class TASeqListOfStatements : public TAStatement {
 	virtual bool isSeqList(){
 		return true;
 	}
-}
+};
  
 #endif

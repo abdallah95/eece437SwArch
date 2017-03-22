@@ -1,14 +1,14 @@
-#include "statement/sTASeqOfStatements.h"
+#include "Statement/TASeqListOfStatements.h"
 #include <iostream>
 
 using namespace std;
 
-TASeqOfStatements :: TASeqOfStatements (TAAtomicStatement * s, TAStatement * list ){
+TASeqListOfStatements :: TASeqListOfStatements (TAAtomicStatement * s, TAStatement * list ){
 	s1 = s;
 	l = list;
 }
 
-void TASeqOfStatements :: evaluate(){
+void TASeqListOfStatements :: evaluate(){
 
 	s1 -> evaluate();
 
@@ -16,7 +16,7 @@ void TASeqOfStatements :: evaluate(){
 
 }
 
-void TASeqOfStatements :: list(){
+void TASeqListOfStatements :: list(){
 
 	s1 -> list();
 	cout << endl;

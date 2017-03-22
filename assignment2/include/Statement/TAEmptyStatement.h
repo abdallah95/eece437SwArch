@@ -2,6 +2,7 @@
 #define NILSTATEMENT_
 
 #include "TAStatement.h"
+#include <iostream>
 
 class TAEmptyStatement {
 
@@ -12,7 +13,7 @@ class TAEmptyStatement {
 	void evaluate() {}
 
 	void list(){
-		cout << ";" << endl;
+		std::cout << ";" << std::endl;
 	}
 
 	virtual bool isNil(){

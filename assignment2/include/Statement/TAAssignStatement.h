@@ -3,8 +3,9 @@
 
 #include "TAStatement.h"
 #include "Expression/TAVar.h"
+#include "Expression/TAExpression.h"
 
-class TAAssignmentStatement : public TAAtomicStatement {
+class TAAssignStatement : public TAAtomicStatement {
 
 	private:
 	
@@ -13,7 +14,7 @@ class TAAssignmentStatement : public TAAtomicStatement {
 
 	public:
 
-	TAAssignmentStatement (TAVar * t, TAExpression * e);
+	TAAssignStatement (TAVar * t, TAExpression * e);
 	
 	TAVar * getTarget(){
 		return target;

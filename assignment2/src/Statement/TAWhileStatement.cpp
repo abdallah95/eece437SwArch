@@ -1,4 +1,4 @@
-#include "statement/TAWhileStatement.h"
+#include "Statement/TAWhileStatement.h"
 #include <iostream>
 
 using namespace std;
@@ -22,6 +22,6 @@ void TAWhileStatement :: list(){
 	cout << "while ( ";
 	condition -> list();
 	cout << " ){" << endl;
-	body -> list;
+	body -> list();
 	cout << endl << "}" <<endl;
 }

@@ -1,6 +1,10 @@
 #ifndef STATEMENT_
 #define STATEMENT_
 
+
+#include "base/Evaluable.h"
+#include "base/Listable.h"
+
 /**
 	Represents a statement that can be evaluated i.e. executed.
 */

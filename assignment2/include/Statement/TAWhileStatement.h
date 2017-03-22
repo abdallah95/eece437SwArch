@@ -4,6 +4,8 @@
 #include "TAStatement.h"
 #include "Expression/TAExpression.h"
 
+#include "Expression/TAFormula.h"
+
 class TAWhileStatement : public TAAtomicStatement {
 
 	private:
@@ -22,7 +24,7 @@ class TAWhileStatement : public TAAtomicStatement {
 	}
 
 	TAFormula * getCondition(){
-		return condtion;
+		return condition;
 	}
 
 	TAStatement * getBody(){
@@ -37,3 +39,5 @@ class TAWhileStatement : public TAAtomicStatement {
 		return true;
 	}
 };
+
+#endif
