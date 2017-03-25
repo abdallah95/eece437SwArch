@@ -1,6 +1,6 @@
-#include <TATransLabel.h>
+#include "Component/TALabel.h"
 
-TATransLabel::TATransLabel (TAComponent * pComp, TAPort * p, TAFormula * g, TAStatement * s){
+TALabel::TALabel (TAComponent * pComp, TAPort * p, TAFormula * g, TAStatement * s){
  
    if (pComp == NULL || p == NULL || g == NULL || s == NULL){
 

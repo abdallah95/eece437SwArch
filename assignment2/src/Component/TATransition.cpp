@@ -1,4 +1,4 @@
-#include <TATransition.h>
+#include "Component/TATransition.h"
 
 TATransition::TATransition(TAComponent * pComp, TAState * pState, TAState * nState){
 

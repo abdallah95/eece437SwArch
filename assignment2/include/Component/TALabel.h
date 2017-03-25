@@ -1,9 +1,9 @@
 #pragma once
 
-#include <TAStatement.h>
-#include <TAFormula.h>
-#include <TAPort.h>
-#include <TAComponent.h>
+#include "Statement/TAStatement.h"
+#include "Expression/TAFormula.h"
+#include "TAPort.h"
+#include "TAComponent.h"
 
 /* TODO  
 	Since B-1(p) should exist => B should be a one-to-one map from SxT -> P
@@ -18,7 +18,8 @@
 	the statement/action to be executed when the transition is to take place and the associated port with this transition.
 	
 */
-class TATransLabel {
+
+class TALabel {
 
 	private:
 
@@ -30,7 +31,7 @@ class TATransLabel {
 
 	public:
 
-		TATransLabel (TAComponent * pComp, TAPort * p, TAFormula * g, TAStatement * s);
+		TALabel (TAComponent * pComp, TAPort * p, TAFormula * g, TAStatement * s);
 
 		TAComponent * getComponent(){
 			return parentComponent;

@@ -1,7 +1,10 @@
 #pragma once
 
-#include <TAComponent.h>
+#include "TAComponent.h"
+
+class TAComponent;
 //TAVars ..
+//TODO Add methods (and fields) that determine all variables associated with this port
 
 class TAPort {
 	
@@ -9,35 +12,23 @@ class TAPort {
 		static unsigned int nextId;
 
 		unsigned int portId;
-		String portName; //Optional
-
-		vector <TAComponent *> components;
+		string portName; //Optional
+		TAComponent * parentComponent;
+		//vector <TAInteraction *> interactions;
 
 	public:
 
-	TAPort(String name = ""){
-		portName = name;
-		portId = nextId ++;
-		components.clear(); //Initially empty
+	TAPort(TAComponent * component, string name = "");
+	
+	string getName(){
+		return portName;
 	}
 
-	bool addComponent(TAComponent * comp){
-		
-		if (hasComponent(comp)){
-			return false;
-		}
-
-		components.insert(comp);
-		return true;
+	unsigned int getId(){
+		return portId;
 	}
 
-	bool hasComponent(TAComponent * comp){
-		for (int i = 0; i < components.size(); i++){
-			if (components[i]->getId() == comp -> getId()){
-				return true;	
-			}
-		}
-		return false;
+	TAComponent * getComponent(){
+		return parentComponent;
 	}
-
 };

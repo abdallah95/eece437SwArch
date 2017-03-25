@@ -1,7 +1,12 @@
 #pragma once
 
-#include <TAState.h>
-#include <TAComponent.h>
+#include "TAState.h"
+#include "TAComponent.h"
+#include "TALabel.h"
+#include "TAPort.h"
+
+class TAState;
+class TAComponent;
 
 /**
 	Represents abstraction for a state transition i.e. a tuple (prevS, nextS) where prevS and nextS are two states of the same component
