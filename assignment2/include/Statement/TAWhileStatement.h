@@ -2,32 +2,27 @@
 #define LOOP_
 
 #include "TAStatement.h"
-#include "Expression/TAExpression.h"
+#include "Expression/TATerm.h"
 
-#include "Expression/TAFormula.h"
+#include "Expression/TATerm.h"
 
 class TAWhileStatement : public TAAtomicStatement {
 
 	private:
 
-	TAFormula * condition;
-	TAStatement * body;
+	TATerm& condition;
+	TAStatement& body;
 
 	public:
 
-	TAWhileStatement (TAFormula * c, TAStatement * s){
-		
-		//TODO check c and s aren't NULL; throw exception otherwise
-
-		condition = c;
-		body = s;
+	TAWhileStatement (TATerm& condition, TAStatement& body):condition(condition), body(body){
 	}
 
-	TAFormula * getCondition(){
+	TATerm& getCondition(){
 		return condition;
 	}
 
-	TAStatement * getBody(){
+	TAStatement& getBody(){
 		return body;
 	}
 

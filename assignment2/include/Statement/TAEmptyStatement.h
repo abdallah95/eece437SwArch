@@ -8,7 +8,7 @@ class TAEmptyStatement {
 
 	public:
 
-	static TAEmptyStatement * getInstance();
+	static TAEmptyStatement& getInstance();
 
 	void evaluate() {}
 
@@ -22,7 +22,7 @@ class TAEmptyStatement {
 
 	private:
 	
-	static TAEmptyStatement * instance;
+	static TAEmptyStatement instance;
 
 	TAEmptyStatement(){}
 

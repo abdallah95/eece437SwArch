@@ -1,6 +1,6 @@
 #include "Component/TALabel.h"
 
-TALabel::TALabel (TAComponent * pComp, TAPort * p, TAFormula * g, TAStatement * s){
+TALabel::TALabel (TAComponent * pComp, TAPort * p, TATerm * g, TAStatement * s){
  
    if (pComp == NULL || p == NULL || g == NULL || s == NULL){
 

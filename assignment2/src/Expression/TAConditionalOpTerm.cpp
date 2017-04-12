@@ -1,13 +1,13 @@
 #include "Expression/TAConditionalOpTerm.h"
 
-
-TAConditionalOpTerm::TAConditionalOpTerm(TAFormula* e1, TATerm* e2, TATerm* e3)
-: formula1(e1), term2(e2), term3(e3) {}
-
-void TAConditionalOpTerm::evaluate() {
-	bool f1state = ((TABoolVar*) formula1->getState())->getVal();
-	TAVar* t2state = term2->getState();
-	TAVar* t3state = term3->getState();
-
-	state = (TABoolVar*)(f1state ? t2state:t3state);
+TAValue& TAConditionalOpTerm::evaluateExecute(TATerm& formula1, TATerm& term2, TATerm& term3) {
+	formula1.evaluate();
+	bool f1val = formula1.getValue().getBool();
+	if(f1val) {
+		term2.evaluate();
+		val.set(term2.getValue());
+	} else {
+		term3.evaluate();
+		val.set(term3.getValue());
+	}
 }

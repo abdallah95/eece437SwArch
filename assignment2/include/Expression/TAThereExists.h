@@ -1,19 +1,18 @@
 #ifndef TATHEREEXISTS_H
 #define TATHEREEXISTS_H
 
-#include "TAFormula.h"
+#include "TATerm.h"
 #include "TADomain.h"
-#include "TABoolVar.h"
+#include "TABool.h"
+#include <Expression/TABoolBinaryOp.h>
 
 // there exists formula
-class TAThereExists : public TAFormula {
-	TAExpression* expression;
-	TADomain* domain;
-	TABoolVar* state;
+class TAThereExists : public TABoolBinaryOp {
+
 public:
-	TAThereExists(TAExpression*, TADomain*);
-	void evaluate();
-	TAVar* getState();
+	TAThereExists(TATerm& term, TADomain& domain)
+	: TABoolBinaryOp(term,domain){}
+	virtual TAValue& evaluateExecute(TATerm& term, TADomain& domain);
 };
 
 #endif

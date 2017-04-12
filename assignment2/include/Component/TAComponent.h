@@ -10,7 +10,7 @@
 #include <vector>
 #include <map>
 
-#include "Expression/TAFormula.h"
+#include "Expression/TATerm.h"
 #include "Statement/TAStatement.h"
 
 #include "TAState.h"
@@ -93,7 +93,7 @@ class TAComponent : public Listable, public Evaluable, public Clonable <TACompon
 	
 		TATransition *  addTransition (TAState * from, TAState * to, TALabel * label);
 
-		TALabel *  addLabel (TAPort * port, TAFormula * guard, TAStatement * statement);
+		TALabel *  addLabel (TAPort * port, TATerm * guard, TAStatement * statement);
 
 		bool assignLabel2Trans (TATransition * trans, TALabel * label);
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Statement/TAStatement.h"
-#include "Expression/TAFormula.h"
+#include "Expression/TATerm.h"
 #include "TAPort.h"
 #include "TAComponent.h"
 
@@ -26,12 +26,12 @@ class TALabel {
 		TAComponent * parentComponent;
 
 		TAPort * port;
-		TAFormula * guard;
+		TATerm * guard;
 		TAStatement * statement;
 
 	public:
 
-		TALabel (TAComponent * pComp, TAPort * p, TAFormula * g, TAStatement * s);
+		TALabel (TAComponent * pComp, TAPort * p, TATerm * g, TAStatement * s);
 
 		TAComponent * getComponent(){
 			return parentComponent;
@@ -41,7 +41,7 @@ class TALabel {
 			return port;
 		}
 
-		TAFormula * getGuard(){
+		TATerm * getGuard(){
 			return guard;
 		}
 

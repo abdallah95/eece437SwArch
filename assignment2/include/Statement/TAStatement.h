@@ -49,6 +49,8 @@ class TAStatement : public Evaluable, public Listable {
 		return false;
 	}
 
+	virtual void list() = 0;
+
 };
 
 //Represents an atomic statement i.e. assignment, conditionl or loop statement.

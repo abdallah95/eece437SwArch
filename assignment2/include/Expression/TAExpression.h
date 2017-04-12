@@ -1,16 +1,16 @@
-#ifndef TAEXPRESSION_H
-#define TAEXPRESSION_H
+#ifndef TATerm_H
+#define TATerm_H
 
 #include "base/Evaluable.h"
 #include "base/Listable.h"
-#include "TAVar.h"
+#include "TAValue.h"
 
 //Represents an expression that can be evaluated to a primitve value (Boolean or Number).
 
-class TAExpression : public Evaluable, public Listable {
+class TATerm : public Evaluable, public Listable {
 public:
-	virtual void setInput(TAVar*) = 0;
-	virtual TAVar* getState() = 0;
+	virtual void setInput(TAValue*) = 0;
+	virtual TAValue* getState() = 0;
 };
 
 #endif

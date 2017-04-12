@@ -49,10 +49,10 @@ void TAState::evaluate(){
 	for (int i = 0; i < availableTransitions.size(); i++){
 
 		TALabel * label = trans2Label[availableTransitions[i]];
-		TAFormula * guard = label -> getGuard();
+		TATerm * guard = label -> getGuard();
 
 		guard -> evaluate();
-		bool gVal = guard -> getState();
+		bool gVal = guard -> getValue().getBool();
 
 		if (gVal){
 			readyPorts.push_back(label -> getPort());		

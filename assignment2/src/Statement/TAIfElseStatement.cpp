@@ -3,33 +3,27 @@
 
 using namespace std;
 
-TAIfElseStatement :: TAIfElseStatement (TAFormula * condition, TAStatement * ifStatement, TAStatement * elseStatement){
-
-	e = condition;
-	s1 = ifStatement;
-	s2 = elseStatement;
-
+TAIfElseStatement :: TAIfElseStatement (TATerm& condition, TAStatement& ifStatement, TAStatement& elseStatement)
+: condition(condition), ifStatement(ifStatement), elseStatement(elseStatement){
 }
 
 void TAIfElseStatement :: evaluate (){
 	
-	e -> evaluate();
+	condition.evaluate();
 
-	if ( e -> getState()){
-		s1 -> evaluate();
-	}
-
-	else {
-		s2 -> evaluate();
+	if (condition.getValue().getBool()) {
+		ifStatement.evaluate();
+	} else {
+		elseStatement.evaluate();
 	}
 }
 
 void TAIfElseStatement :: list (){
 	cout << "if ( ";
-	e -> list();
+	condition.list();
 	cout << " ) { " << endl;
-	s1 -> list();
+	ifStatement.list();
 	cout << endl << " } " << endl << " else { " << endl;
-	s2 -> list();
+	elseStatement.list();
 	cout << endl << " } " << endl;
 }

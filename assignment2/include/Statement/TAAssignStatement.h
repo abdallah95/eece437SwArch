@@ -2,25 +2,26 @@
 #define ASSIGNMENT_
 
 #include "TAStatement.h"
-#include "Expression/TAVar.h"
-#include "Expression/TAExpression.h"
+#include "Expression/TAValue.h"
+#include "Expression/TATerm.h"
+#include <Expression/TANamedObj.h>
 
 class TAAssignStatement : public TAAtomicStatement {
 
 	private:
 	
-	TAVar * target;
-	TAExpression * exp;
+	TANamedObj& target;
+	TATerm& exp;
 
 	public:
 
-	TAAssignStatement (TAVar * t, TAExpression * e);
+	TAAssignStatement (TANamedObj&, TATerm&);
 	
-	TAVar * getTarget(){
+	TANamedObj& getTarget(){
 		return target;
 	}
 
-	TAExpression * getExp(){
+	TATerm& getExp(){
 		return exp;
 	}
 

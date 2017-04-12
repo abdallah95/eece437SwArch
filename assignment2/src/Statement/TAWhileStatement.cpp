@@ -7,21 +7,21 @@ void TAWhileStatement :: evaluate(){
 
 	while (true){
 
-		condition -> evaluate();
+		condition.evaluate();
 
-		if (!condition -> getState()){
+		if (!condition.getValue().getBool()){
 			break;
 		}		
 		
-		body -> evaluate();
+		body.evaluate();
 	}
 }
 
 void TAWhileStatement :: list(){
 	
 	cout << "while ( ";
-	condition -> list();
+	condition.list();
 	cout << " ){" << endl;
-	body -> list();
+	body.list();
 	cout << endl << "}" <<endl;
 }

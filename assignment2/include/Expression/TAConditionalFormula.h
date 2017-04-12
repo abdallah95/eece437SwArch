@@ -2,21 +2,20 @@
 #define TACONDITIONALFORMULA_H
 
 
-#include "TAFormula.h"
-#include "TABoolVar.h"
+#include "TATerm.h"
+#include "TABool.h"
 
 //Represents the ternary conditional (c) ? e1 : e2 
 //TODO Add members ...
 
-class TAConditionalFormula : public TAFormula {
-	TAFormula* formula1;
-	TAFormula* formula2;
-	TAFormula* formula3;
-	TABoolVar* state;
+class TAConditionalFormula : public TATerm {
+	TATerm& formula1;
+	TATerm& formula2;
+	TATerm& formula3;
 public:
-	TAConditionalFormula(TAFormula* e1, TAFormula* e2, TAFormula* e3);
-	void evaluate();
-	TAVar* getState();
+	TAConditionalFormula(TATerm& formula1, TATerm& formula2, TATerm& formula3)
+	:formula1(formula1), formula2(formula2), formula3(formula3) {}
+	virtual TAValue& evaluateExecute(TATerm& formula1, TATerm& formula2, TATerm& formula3);
 };
 
 

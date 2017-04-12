@@ -7,12 +7,12 @@ class TASeqListOfStatements : public TAStatement {
 
 	private:
 
-	TAAtomicStatement * s1;
-	TAStatement * l;
+	TAAtomicStatement& s1;
+	TAStatement& l;
 
 	public:
 
-	TASeqListOfStatements (TAAtomicStatement * s, TAStatement * list);
+	TASeqListOfStatements (TAAtomicStatement& s, TAStatement& list);
 
 	virtual void evaluate();
 

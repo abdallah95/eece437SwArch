@@ -1,10 +1,7 @@
 #include "Statement/TAEmptyStatement.h"
 
-TAEmptyStatement * TAEmptyStatement :: getInstance(){
+TAEmptyStatement TAEmptyStatement::instance;
 
-	if (instance == NULL){
-		instance = new TAEmptyStatement();
-	}
-
+TAEmptyStatement& TAEmptyStatement :: getInstance(){
 	return instance;
 }

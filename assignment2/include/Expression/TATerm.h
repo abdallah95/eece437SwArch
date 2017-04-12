@@ -1,13 +1,28 @@
-#ifndef TATERM_H
-#define TATERM_H
+#pragma once 
 
-#include "TAExpression.h"
+#include <Expression/TAObj.h>
+#include <Expression/TAValue.h>
+#include <iostream>
+using namespace std;
 
-//Represents an expression that evaluates to a primitive Number value
-//TODO TATerm should also inherit from an abstract type class, TANumber 
+class TAValue;
 
-class TATerm : public TAExpression {
+struct TATerm : public TAObj {
+  TAValue val;
 
-};
 
-#endif
+  virtual void printState() const {
+    printState(cout);
+  }
+
+  virtual const TAValue & getValue() const {
+    return val;
+  }
+
+  virtual void list(ostream & os = cout) const = 0;
+  virtual TAValue & evaluate() =0;
+  virtual void printState(ostream & os) const {
+    val.print(os);
+  }
+}; 
+

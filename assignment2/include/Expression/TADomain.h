@@ -1,13 +1,15 @@
 #ifndef TADOMAIN_H
 #define TADOMAIN_H
 
-#include "TAVar.h"
+#include "TAValue.h"
+#include <Expression/TANamedObj.h>
 
-//Represents the domain of a TAVar
-class TADomain {
+//Represents the domain of a TAValue
+class TADomain: public TANamedObj {
 public:
-	virtual bool contains(TAVar&) = 0;
-	virtual TAVar* iterate() = 0;
+	TADomain(const string& s): TANamedObj(s) {}
+	virtual bool contains(TAValue&) = 0;
+	virtual TAValue* iterate() = 0;
 };
 
 

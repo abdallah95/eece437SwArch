@@ -2,23 +2,19 @@
 #define CONCURRENT_
 
 #include "TAStatement.h"
-#include "Expression/TAExpression.h"
+#include "Expression/TATerm.h"
 
 class TAConcurrentListOfStatements : public Statement {
 
 	private:
 
-	TAAtomicStatement * s1;
-	TAStatement * l;
+	TAAtomicStatement& s1;
+	TAStatement& l;
 
 	
 	public:
 
-	TAConcurrentListOfStatements (TAAtomicStatement *s, TAStatement *list){
-			
-			s1 = s;
-
-			l = list;
+	TAConcurrentListOfStatements (TAAtomicStatement& s, TAStatement& list):s1(s), l(list){
 	}
 
 	virtual void list();

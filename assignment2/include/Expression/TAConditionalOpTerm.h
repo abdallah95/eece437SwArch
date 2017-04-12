@@ -1,21 +1,20 @@
 #ifndef TACONDITIONALOPTERM_H
 #define TACONDITIONALOPTERM_H
 
-#include "TAExpression.h"
-#include "TABoolVar.h"
 #include "TATerm.h"
+#include "TABool.h"
 
 //Represents the ternary conditional expression (c) ? e1 : e2 
 // TODO Add members and set/get functions
 
-class TAConditionalOpTerm : public TAExpression {
-	TAFormula* formula1;
-	TATerm* term2;
-	TATerm* term3;
-	TABoolVar* state;
+class TAConditionalOpTerm : public TATerm {
+	TATerm& formula1;
+	TATerm& term2;
+	TATerm& term3;
 public:
-	TAConditionalOpTerm(TAFormula* e1, TATerm* e2, TATerm* e3);
-	void evaluate();
+	TAConditionalOpTerm(TATerm& formula1, TATerm& term2, TATerm& term3)
+	:formula1(formula1), term2(term2), term3(term3){}
+	virtual TAValue& evaluateExecute(TATerm& formula1, TATerm& term2, TATerm& term3);
 };
 
 #endif

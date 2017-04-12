@@ -1,11 +1,41 @@
-#ifndef TAARRAYACCESS_H
-#define TAARRAYACCESS_H
+#pragma once
+#include <Expression/TABinaryOp.h>
+#include <Expression/TAArray.h>
 
-#include "TAVar.h"
+struct TAArrayAccess : public TABinaryOp {
 
-//Represents an array access variable; allows retrieval of the corresponding array member value and directly setting it
-class TAArrayAccess : public TAVar {
+  TAArrayAccess (TAArray & a, TATerm & t) :
+    TABinaryOp(a,t) 
+  {
+    //use the subtype of `a' to select a default value
+    val.set(a.getBaseType().getDefaultValue());
+  }
 
+  TAArray & getArray() const {
+    return (TAArray&)getLeft();
+  }
+
+  virtual const TAType & getType() const {
+    return getArray().getBaseType();
+  }
+
+  virtual TAValue & evaluateExecute(TAValue & val1, TAValue & val2) {
+    // val1 is an array value, 
+    // val2 is an expression value
+    val.assignSelect(val1,val2);
+    return val;
+  }
+
+  virtual void set(TATerm & t) {
+    TAValue & v = t.evaluate();
+    val.set(v);
+
+    TAValue & idx = getRight().evaluate();
+    int iidx = idx.getInt();
+    getArray().setAt(val,iidx);
+  }
+
+  virtual const string operatorSign () const {
+    return "select";
+  }
 };
-
-#endif

@@ -3,23 +3,22 @@
 
 using namespace std;
 
-TASeqListOfStatements :: TASeqListOfStatements (TAAtomicStatement * s, TAStatement * list ){
-	s1 = s;
-	l = list;
+TASeqListOfStatements :: TASeqListOfStatements (TAAtomicStatement& s, TAStatement& list )
+:s1(s), l(list){
 }
 
 void TASeqListOfStatements :: evaluate(){
 
-	s1 -> evaluate();
+	s1.evaluate();
 
-	l -> evaluate();
+	l.evaluate();
 
 }
 
 void TASeqListOfStatements :: list(){
 
-	s1 -> list();
+	s1.list();
 	cout << endl;
-	l -> list();
+	l.list();
 	cout << endl;
 }

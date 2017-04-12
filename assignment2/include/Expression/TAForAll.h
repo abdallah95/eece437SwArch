@@ -1,19 +1,18 @@
 #ifndef TAFORALL_H
 #define TAFORALL_H
 
-#include "TAFormula.h"
+#include "TATerm.h"
 #include "TADomain.h"
-#include "TABoolVar.h"
+#include "TABool.h"
+#include <Expression/TABoolBinaryOp.h>
 
-// for all formula
-class TAForAll : public TAFormula {
-	TAExpression* expression;
-	TADomain* domain;
-	TABoolVar* state;
+// there exists formula
+class TAForAll : public TABoolBinaryOp {
+
 public:
-	TAForAll(TAExpression*, TADomain*);
-	void evaluate();
-	TAVar* getState();
+	TAForAll(TATerm& term, TADomain& domain)
+	: TABoolBinaryOp(term,domain){}
+	virtual TAValue& evaluateExecute(TATerm& term, TADomain& domain);
 };
 
 #endif

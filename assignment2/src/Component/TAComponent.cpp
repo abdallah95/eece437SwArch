@@ -91,7 +91,7 @@ TATransition *  TAComponent::addTransition (TAState * from, TAState * to, TALabe
 	return transition;
 }
 
-TALabel *  TAComponent::addLabel (TAPort * port, TAFormula * guard, TAStatement * statement){
+TALabel *  TAComponent::addLabel (TAPort * port, TATerm * guard, TAStatement * statement){
 
 	TALabel * label = new TALabel (this, port, guard, statement);
 	labels.push_back(label);

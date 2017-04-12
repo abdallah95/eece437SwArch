@@ -3,7 +3,7 @@
 #include "TAComponent.h"
 
 class TAComponent;
-//TAVars ..
+//TAValues ..
 //TODO Add methods (and fields) that determine all variables associated with this port
 
 class TAPort {

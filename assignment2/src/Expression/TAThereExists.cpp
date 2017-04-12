@@ -1,23 +1,13 @@
-#include "Expression/TAThereExists.h"
+#include <Expression/TAThereExists.h>
 
-
-TAThereExists::TAThereExists(TAExpression* expression, TADomain* domain): expression(expression), domain(domain) {}
-	
-void TAThereExists::evaluate() {
-	TAVar* next = 0;
-	while((next=domain->iterate())!=0) {
-		expression->setInput(next);
-		expression->evaluate();
-		bool result = ((TABoolVar*) expression->getState())->getVal();
-		if(result){
-			state->setVal(true);
-			return;
+TAValue& TAThereExists::evaluateExecute(TATerm& term, TADomain& domain) {
+	TAValue* next = 0;
+	while((next=domain.iterate())!=0) {
+		val.set(term.evaluate());
+		if(val.getBool()){
+			return val;
 		}
 	}
-	state->setVal(false);
-}
-
-
-TAVar* TAThereExists::getState() {
-	return state;
+	val.set(false);
+	return val;
 }

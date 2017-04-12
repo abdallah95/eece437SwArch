@@ -2,30 +2,30 @@
 #define IFELSE_
 
 #include "TAStatement.h"
-#include "Expression/TAFormula.h"
+#include "Expression/TATerm.h"
 
 class TAIfElseStatement : public TAAtomicStatement {
 
 	private:
 
-	TAFormula * e;
-	TAStatement * s1;
-	TAStatement * s2;
+	TATerm& condition;
+	TAStatement& ifStatement;
+	TAStatement& elseStatement;
 
 	public: 
 	
-	TAIfElseStatement (TAFormula * e, TAStatement * s1, TAStatement * s2);
+	TAIfElseStatement (TATerm& condition, TAStatement& s1, TAStatement& s2);
 
-	TAFormula * getCondition(){
-		return e;
+	TATerm& getCondition(){
+		return condition;
 	}
 
-	TAStatement * getIfStatement(){
-		return s1;
+	TAStatement& getIfStatement(){
+		return ifStatement;
 	}
 
-	TAStatement * getElseStatement(){
-		return s2;
+	TAStatement& getElseStatement(){
+		return elseStatement;
 	}
 
 	virtual void evaluate();
