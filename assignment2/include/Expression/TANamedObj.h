@@ -1,3 +1,4 @@
+
 #pragma once 
 #include <Expression/TATerm.h>
 #include <string>
@@ -18,3 +19,5 @@ struct TANamedObj : public TATerm {
     os << name;
   }
 };
+
+typedef TANamedObj TAVariable;
