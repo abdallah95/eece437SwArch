@@ -1,29 +1,40 @@
+#define NDEBUG
+#include <assert.h>
+
 #include "Statement/TAIfElseStatement.h"
 #include <iostream>
 
 using namespace std;
 
-TAIfElseStatement :: TAIfElseStatement (TATerm& condition, TAStatement& ifStatement, TAStatement& elseStatement)
-: condition(condition), ifStatement(ifStatement), elseStatement(elseStatement){
+TAIfElseStatement :: TAIfElseStatement (TATerm * condition, TAStatement * ifStatement, TAStatement * elseStatement)
+{
+        assert (condition != NULL);
+        assert (ifStatement != NULL); 
+        assert (elseStatement != NULL);
+ 
+        this -> condition = condition;
+        this -> ifStatement = ifStatement;
+        this -> elseStatement = elseStatement;
+
 }
 
 void TAIfElseStatement :: evaluate (){
 	
-	condition.evaluate();
+	condition -> evaluate();
 
-	if (condition.getValue().getBool()) {
-		ifStatement.evaluate();
+	if (condition -> getValue().getBool()) {
+		ifStatement -> evaluate();
 	} else {
-		elseStatement.evaluate();
+		elseStatement -> evaluate();
 	}
 }
 
-void TAIfElseStatement :: list (){
-	cout << "if ( ";
-	condition.list();
-	cout << " ) { " << endl;
-	ifStatement.list();
-	cout << endl << " } " << endl << " else { " << endl;
-	elseStatement.list();
-	cout << endl << " } " << endl;
+void TAIfElseStatement :: list (ostream & os){
+	os << "if ( ";
+	condition -> list(os);
+	os << " ) { " << endl;
+	ifStatement -> list(os);
+	os << endl << " } " << endl << " else { " << endl;
+	elseStatement -> list(os);
+	os << endl << " } " << endl;
 }

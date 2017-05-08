@@ -1,26 +1,29 @@
+#define NDEBUG
+
+#include <assert.h>
 #include "Component/TALabel.h"
 
 TALabel::TALabel (TAComponent * pComp, TAPort * p, TATerm * g, TAStatement * s){
+
+   assert (pComp != NULL && p != NULL && g != NULL && s != NULL);
+
+   assert (pComp.hasPort(p));
  
-   if (pComp == NULL || p == NULL || g == NULL || s == NULL){
-
-	throw -1;       //TODO Need to define and handle exceptions more gracefully
-    }
-
-#if 0
-
-    if ( !pComp.hasPort(p)){
-        throw -2;       //TODO Same as above
-    }
-
-#endif
-    
-    //TODO Check if the statement type is allowed (i.e. concurrent, not loop ...)
-
-    parentComponent = pComp;
-    port = p;
-    guard = g;
-    statement = s;
+   assert (s.isConcurList()); //If it's concurrent statement, it can be executed concurrently with other statements
+ 
+   parentComponent = pComp;
+   port = p;
+   guard = g;
+   statement = s;
 
 }
 
+void TALabel::list(ostream & os){
+
+  os << "( " << port -> getName() << ", ";
+  guard -> list(os);
+  os << ", ";
+  statement -> list (os);
+  os << " ) " << endl;
+
+}

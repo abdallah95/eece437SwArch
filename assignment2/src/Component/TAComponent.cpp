@@ -1,5 +1,10 @@
+#define NDEBUG
+#include <assert.h>
+
 #include <stdlib.h>
 #include "Component/TAComponent.h"
+
+unsigned int TAComponent::currentId = 0; 
 
 //Constructor
 TAComponent::TAComponent (string name){
@@ -9,28 +14,114 @@ TAComponent::TAComponent (string name){
 
 bool TAComponent::setStart(TAState * start){
 
-	//TODO assert (start != NULL);
-	//TODO assert (start -> getComponent() -> getId() -= getId());
-	startState = start; //Assuming the start state can be changed TODO Recheck this decision
+	assert (start != NULL);
+	assert (start -> getComponent() -> getId() == getId());
+	startState = start; 
 }
 
 TAComponent * TAComponent::clone(){
 
+        //New component
 	TAComponent * newClone = new TAComponent(this -> componentName);
 	
-	map <TAState *, TAState *> state2state;
-	map <TAPort *, TAPort *> port2port;
-	map <TATransition *, TATransition *> tran2tran;
+        //Helper maps
+	map <TAState *, TAState *> state2state;          //Maps old states to their corresp. clones
+	map <TAPort *, TAPort *> port2port;              //Maps old ports to their corresp. clones
+        map <TALabel *, TALabel *> label2label;          //Maps old labels to their corresp. clones
 
-	//TODO continue ...
+        //Clone all states (but don't fill yet)
+        for (unsigned int i = 0; i < states.size(); i++){
 
-	return NULL;	
+               TAState * state = states[i];
+               assert(state != NULL);
+               TAState * newState = newClone -> addState(state -> getName());
+               assert (newState != NULL);
+               state2state[state] = newState;
+        }
+
+        //Clone all ports 
+        for (unsigned int j = 0; j < ports.size(); j++){
+           
+               TAPort * port = ports[j];
+               assert (port != NULL);
+               
+               TAPort * newPort = newClone -> addPort(port -> getName());
+               assert (newPort != NULL);
+
+               port2port[port] = newPort;
+        }
+
+        for (unsigned int k = 0; k < labels.size(); k++){
+             
+               TALabel * label = labels[k];
+               assert (label != NULL);
+
+               //TODO Clone variables in the guard and action statement 
+               //TODO Then, clone guard and action and use the new copies
+
+               TATerm * newGuard = label -> getGuard(); //TODO Use clone instead
+               assert (newGuard != NULL);
+
+               TAStatement * newStatement = label -> getStatement(); //TODO Use clone instead
+               assert(newStatement != NULL);
+
+               TAPort * newPort = port2port[label -> getPort()];
+               assert (newPort != NULL);
+
+               TALabel * newLabel = newClone -> addLabel(newPort, newGuard, newStatement);
+               assert (newLabel != NULL);
+ 
+               label2label[label] = newLabel;               
+        }
+
+        for (unsigned int l = 0; l < transitions.size(); l++){
+         
+               TATransition * transition = transitions[l];
+               assert (transition != NULL);
+
+               TAState * from = state2state[transition -> getPrevState()];
+               assert(from != NULL);
+
+               TAState * to = state2state[transition -> getNextState()];
+               assert(to != NULL);
+
+               TALabel * label = getLabel(transition);
+               assert(label != NULL);
+               label = label2label[label];
+               assert (label != NULL);
+
+               TATransition * newTransition = newClone -> addTransition(from, to, label);
+               assert (newTransition != NULL);
+        }
+
+	return newClone;	
 }
 
 
 void TAComponent::list(ostream & os){
 
-	//TODO List ...
+	os << "Component " << getName() << " of Id = " << getId() << " { " << endl;
+
+        os << "States: ";
+        for (unsigned int i = 0; i < states.size(); i++){
+              os << states[i] -> getName() <<  ", ";
+        }
+        os << endl;
+
+        os << "Ports: ";
+        for (unsigned int j = 0; j < ports.size(); j++){
+              os << ports[j] -> getName() << ", ";
+        }
+        os << endl;
+
+        os << "Transitions: ";
+        for (unsigned int k = 0; k < transitions.size(); k++){
+             transitions[k] -> list(os);
+             os << " with label ";
+             getLabel(transitions[k]) -> list(os);
+             os << endl;
+        }
+        os << endl;
 }
 
 void TAComponent::evaluate(){
@@ -59,13 +150,26 @@ void TAComponent::evaluate(){
 	
 }
 
+//Executes the transition corresponding with this port
 void TAComponent::execute(TAPort * port){
+
+  assert (currentState -> isPortReady(port));
+  
+  TATransition * transition = currentState -> getTransition(port);
+  assert (transition != NULL);
+
+  TALabel * label = trans2Label[transition];
+  assert (label != NULL);
+  
+  label -> getStatement() -> evaluate(); //Execute action statement
+  
+  currentState = transition -> getNextState();
 
 }
 
 TAState * TAComponent::addState (string name){
 	TAState * state = new TAState(this, trans2Label, name);
-	//TODO assert(state != NULL);
+	assert(state != NULL);
 	states.push_back(state);
 
 	return state;
@@ -73,7 +177,7 @@ TAState * TAComponent::addState (string name){
 
 TAPort *  TAComponent::addPort (string name){
 	TAPort * port = new TAPort (this, name);
-	//TODO assert(port != NULL);
+	assert(port != NULL);
 	ports.push_back(port);
 
 	return port;
@@ -81,13 +185,14 @@ TAPort *  TAComponent::addPort (string name){
 
 //We assume that every transition should be assigned 
 TATransition *  TAComponent::addTransition (TAState * from, TAState * to, TALabel * label){
-	TATransition * transition = from -> addTransition(to, label -> getPort());
-	//TODO assert(transition != NULL);
+	
+        TATransition * transition = from -> addTransition(to, label -> getPort());
+	assert(transition != NULL);
+
 	transitions.push_back(transition);
 	
-	//TODO Check that label is in labels; if not, add it ?
-
 	trans2Label[transition] = label;
+
 	return transition;
 }
 

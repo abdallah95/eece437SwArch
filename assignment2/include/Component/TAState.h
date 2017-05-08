@@ -18,11 +18,12 @@
 	** Note ** 
 
 	State cloning is hard to define in the current architecture design.
-	This is mainly because to clone a specific state with all its connections, other states be cloned first.
-	But this may lead to circular definitions ...
+	This is mainly because to clone a specific state with all its connections, other states should be cloned first.
+	But this may lead to circular cases (State A can only be cloned if State B has been clone, and vice versa ... ).
 
-	Instead, the cloning logic will be embedded on the component level which will construct states in the new component clone
-	corresponding to the current's states. Then, it would create equivalent transitions and other connections.
+	Instead, the cloning logic will be implemented on the component level. 
+        States will be (partially) cloned first. 
+        Then, it would create equivalent transitions and other connections.
 
 	####################
 
@@ -51,9 +52,8 @@ typedef map <TATransition *, TALabel *> Trans2Label;
 typedef map <TAPort *, TATransition *> Port2Trans;
 #endif
 
-/**
-	Represents the abstraction of a state in a Finite-State Machine (FSM) that is implemented by a Component
-*/
+/*  Represents the abstraction of a state in a Finite-State Machine (FSM)  */
+
 class TAState : public Listable, public Evaluable {
 
 	private:
@@ -68,13 +68,16 @@ class TAState : public Listable, public Evaluable {
 		TAComponent * parentComponent; //Pointer to the component to which this state belongs
 
 		//Map of transitions to labels of the containing component
-		Trans2Label &  trans2Label;
+		Trans2Label &  trans2Label; //Reference to the map in parent component
+
 		//Reverse map of ports to transitions
-		Port2Trans port2Trans;
+		Port2Trans port2Trans;     //Assures that each port is assigned to exactly one transition starting from this state
 
-		vector<TAState *> nextStates; //List of states that are directly reachable from this state via a single valid transition
+                //List of states that are directly reachable from this state via a single valid transition
+		vector<TAState *> nextStates; 
 
-		vector<TATransition *> availableTransitions; //List of transitions possible from this state
+                //List of transitions possible from this state
+		vector<TATransition *> availableTransitions; 
 
 		//List of ports associated with some transition in availableTransitions; they may not be ready though
 		vector<TAPort *> availablePorts; 
@@ -87,17 +90,19 @@ class TAState : public Listable, public Evaluable {
 		TAState(TAComponent * pComp, Trans2Label & t2l, string name = "");
 
 
-		/** Constructs new transition (thisState, nextState) associated with port
-		    Updates corresponding data fields appropriately. 
-	            Also, assures that at most one transition (starting from current state) correspond to each port.
+		/*  
+                    Constructs new transition (thisState, nextState) associated with port.
+	            Assures that at most one transition (starting from current state) correspond to each port.
 		*/
+
 		TATransition *  addTransition (TAState * nextState, TAPort * port);
 
 		//Evaluates the guard of each transition label and determines which ports are ready
 		virtual void evaluate();
 	
+                //Lists the state's name, parent component and the transitions defined from it (with their labels).
 		virtual void list(ostream & os);
-
+        
 		bool isPortReady(TAPort * port);
 
 		vector <TAPort *> getReadyPorts();
@@ -105,6 +110,15 @@ class TAState : public Listable, public Evaluable {
 		unsigned int getId(){
 			return stateId;
 		}
+
+                TATransition * getTransition(TAPort * port){
+
+                      if (port == NULL){
+                         return NULL;
+                      }
+
+                      return port2Trans[port]; 
+                }
 
 		string getName(){
 			return stateName;

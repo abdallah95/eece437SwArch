@@ -10,24 +10,24 @@ class TAAssignStatement : public TAAtomicStatement {
 
 	private:
 	
-	TANamedObj& target;
-	TATerm& exp;
+	TANamedObj * target;
+	TATerm  * exp;
 
 	public:
 
-	TAAssignStatement (TANamedObj&, TATerm&);
+	TAAssignStatement (TANamedObj * , TATerm *);
 	
-	TANamedObj& getTarget(){
+	TANamedObj * getTarget(){
 		return target;
 	}
 
-	TATerm& getExp(){
+	TATerm * getExp(){
 		return exp;
 	}
 
 	virtual void evaluate();
 
-	virtual void list();
+	virtual void list(ostream & os);
 
 	virtual bool isAssign(){
 		return true;

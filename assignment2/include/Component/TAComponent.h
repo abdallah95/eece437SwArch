@@ -29,9 +29,15 @@ class TATransition;
 
 #ifndef MAP_TYPES
 #define MAP_TYPES
-typedef map <TATransition *, TALabel *> Trans2Label;
-typedef map <TAPort *, TATransition *> Port2Trans;
+typedef map <TATransition *, TALabel *> Trans2Label; //Maps each transition to its label
+typedef map <TAPort *, TATransition *> Port2Trans;   //Maps each port to its associated transition
 #endif
+
+/* 
+    Represents the abstraction of a component in an LTS.
+    Implicitly embeds a state, port, transition and label factory.
+
+ */
 
 class TAComponent : public Listable, public Evaluable, public Clonable <TAComponent> {
 
@@ -45,12 +51,12 @@ class TAComponent : public Listable, public Evaluable, public Clonable <TACompon
 		string componentName; //Optional
 
 		TAState * startState;	//The start state 
-		TAState * currentState;
+		TAState * currentState; //Current state of component
 
-		vector<TAState *> states;
-		vector<TAPort *> ports;
-		vector<TATransition *> transitions;
-		vector<TALabel *> labels;
+		vector<TAState *> states; //List of all component states
+		vector<TAPort *> ports;   //List of all ports associated with the component's transitions
+		vector<TATransition *> transitions; //List of all transitions between component's states
+		vector<TALabel *> labels; //List of all labels of component's transitions
 
 		Trans2Label trans2Label;
 
@@ -75,9 +81,13 @@ class TAComponent : public Listable, public Evaluable, public Clonable <TACompon
 			return startState;
 		}
 
-		TAState * getCurrentState(){
+		TAState * getState(){
 			return currentState;
 		}
+
+                void printState(){
+                   currentState -> list(cout);
+                }
 
 		virtual TAComponent * clone();
 	
@@ -94,8 +104,6 @@ class TAComponent : public Listable, public Evaluable, public Clonable <TACompon
 		TATransition *  addTransition (TAState * from, TAState * to, TALabel * label);
 
 		TALabel *  addLabel (TAPort * port, TATerm * guard, TAStatement * statement);
-
-		bool assignLabel2Trans (TATransition * trans, TALabel * label);
 
 		TALabel * getLabel (TATransition * trans);
 				

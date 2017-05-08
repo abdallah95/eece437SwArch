@@ -1,5 +1,8 @@
 #pragma once
 
+#define NDEBUG
+#include <assert.h>
+
 #include <vector>
 #include <map>
 
@@ -31,7 +34,7 @@ class TAInteraction : public Listable, public Evaluable {
 
 		bool addPort (TAPort * port){
 
-                      	// TODO assert (port != NULL && port -> getComponent() != NULL);
+                      	assert (port != NULL && port -> getComponent() != NULL);
 			TAComponent * component = port -> getComponent();
 			
 			if (comp2Port[component] != NULL){

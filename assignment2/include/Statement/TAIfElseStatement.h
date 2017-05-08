@@ -8,29 +8,29 @@ class TAIfElseStatement : public TAAtomicStatement {
 
 	private:
 
-	TATerm& condition;
-	TAStatement& ifStatement;
-	TAStatement& elseStatement;
+	TATerm * condition;
+	TAStatement * ifStatement;
+	TAStatement * elseStatement;
 
 	public: 
 	
-	TAIfElseStatement (TATerm& condition, TAStatement& s1, TAStatement& s2);
+	TAIfElseStatement (TATerm * condition, TAStatement *  s1, TAStatement * s2);
 
-	TATerm& getCondition(){
+	TATerm * getCondition(){
 		return condition;
 	}
 
-	TAStatement& getIfStatement(){
+	TAStatement * getIfStatement(){
 		return ifStatement;
 	}
 
-	TAStatement& getElseStatement(){
+	TAStatement * getElseStatement(){
 		return elseStatement;
 	}
 
 	virtual void evaluate();
 
-	virtual void list();
+	virtual void list(ostream & os);
 
 	virtual bool isIfElse(){
 		return true;

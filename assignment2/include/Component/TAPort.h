@@ -1,24 +1,27 @@
 #pragma once
 
+//TODO COnsider implementing list method
+
 #include "TAComponent.h"
 
 class TAComponent;
-//TAValues ..
-//TODO Add methods (and fields) that determine all variables associated with this port
+
+/* Represents abstraction of a port in an LTS. */
 
 class TAPort {
 	
 	private:
-		static unsigned int nextId;
+		static unsigned int nextId; //Used to assure each port is given a 'unique' id
 
-		unsigned int portId;
-		string portName; //Optional
-		TAComponent * parentComponent;
+		unsigned int portId; //Unique id assigned to this port
+		string portName; //Optional name
+		TAComponent * parentComponent; //A port is associated with a single owner component
+
 		//vector <TAInteraction *> interactions;
 
 	public:
-
-	TAPort(TAComponent * component, string name = "");
+        
+	TAPort(TAComponent * component, string name = ""); 
 	
 	string getName(){
 		return portName;

@@ -49,7 +49,7 @@ class TAStatement : public Evaluable, public Listable {
 		return false;
 	}
 
-	virtual void list() = 0;
+	virtual void list(ostream & os) = 0;
 
 };
 

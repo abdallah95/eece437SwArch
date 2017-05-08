@@ -10,25 +10,24 @@ class TAWhileStatement : public TAAtomicStatement {
 
 	private:
 
-	TATerm& condition;
-	TAStatement& body;
+	TATerm * condition;
+	TAStatement * body;
 
 	public:
 
-	TAWhileStatement (TATerm& condition, TAStatement& body):condition(condition), body(body){
-	}
+	TAWhileStatement (TATerm * condition, TAStatement * body);
 
-	TATerm& getCondition(){
+	TATerm * getCondition(){
 		return condition;
 	}
 
-	TAStatement& getBody(){
+	TAStatement * getBody(){
 		return body;
 	}
 
 	virtual void evaluate();
 
-	virtual void list();
+	virtual void list(ostream & os);
 
 	virtual bool isLoop(){
 		return true;

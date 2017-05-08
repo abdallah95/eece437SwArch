@@ -18,8 +18,8 @@ build/src/%.d: src/%.cpp
 	@mkdir -p $(shell dirname $@)
 	$(CXX) $(CXX_FLAGS) -M $< > $@
 
-# test: test.cpp build_dir $(OBJ_FILES)
-# 	$(CXX) -o test $(OBJ_FILES) test.cpp
+test:	src/test.cpp $(BUILD_DIR) $(OBJ_FILES)
+	$(CXX) $(CXX_FLAGS) -o test $(OBJ_FILES) src/test.cpp
 
 clean:
 	rm -f test 

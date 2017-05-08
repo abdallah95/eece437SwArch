@@ -1,13 +1,32 @@
+#define NDEBUG
+#include <assert.h>
 #include "Component/TAState.h"
+#include <sstream>
+
+//Initialize static field 
+unsigned int TAState::nextId = 0;
 
 //Constructor
 TAState::TAState(TAComponent * pComp, Trans2Label & t2l, string name) : trans2Label(t2l){
 
 	stateId = nextId ++;    //Set to unique id then increment the static field
 
-	//TODO assert ( pComp != NULL)
+	assert ( pComp != NULL);
+
 	parentComponent = pComp;
-	stateName = name;
+        
+        if (name == ""){
+
+            stringstream ss;
+            ss << "s" << stateId;
+            stateName = ss.str();
+
+        } else {
+
+          stateName = name;
+
+        }
+
 }
 
 /** Constructs new transition (thisState, nextState) associated with port
@@ -19,13 +38,24 @@ TATransition *  TAState::addTransition (TAState * nextState, TAPort * port){
 
 	for (int i = 0; i < nextStates.size(); i++){
 		//Transition (this, nextState) already exists
-		if ( nextStates[i] -> getId() == nextState -> getId())
-		{
+		if ( nextStates[i] -> getId() == nextState -> getId() ) {
+
+                        //Error message
+                        cerr << "Cannot create multiple transitions from  ";
+                        list(cerr);
+                        cerr << " to ";
+                        nextState -> list (cerr);
+
 			return NULL; //Failed to create transition
 		}
 	}
 
 	if (port2Trans[port] != NULL){	//port already mapped to a transition starting from this state
+    
+                //Error message
+                cerr << "Cannot associate port " << port -> getId() << "with more than one transitions out from  ";
+                list (cerr); 
+                cerr << endl;
 		return NULL;
 	}
 
@@ -44,7 +74,7 @@ TATransition *  TAState::addTransition (TAState * nextState, TAPort * port){
 
 void TAState::evaluate(){
 
-	readyPorts.clear();
+	readyPorts.clear(); //Clear for refilling 
 
 	for (int i = 0; i < availableTransitions.size(); i++){
 
@@ -64,8 +94,38 @@ void TAState::evaluate(){
 }
 
 void TAState::list(ostream & os){
-	//TODO write list function
-}
+	os << "State " << getName() << " of Id = " << getId() << endl;
+
+// TODO Decide whether to list state info in detail or not
+ 
+#if 0   
+        os << " { " << endl;
+
+        // Print all ports of transitions from here
+        os << "Ports : " << endl;
+        for (unsigned int i = 0; i < availablePorts.size(); i++){
+               TAPort * port = availablePorts[i];
+               os << "Port " << port -> getName() << " of Id = " << port -> getId() << endl;
+        }
+
+       //Print all next states (names)
+       os << "Next States: " << endl;
+       for (unsigned int j = 0; j < nextStates.size(); j++){
+             TAState * state = nextStates[j];
+             os << "State " << state -> getName() << " of Id = " << state -> getId() << endl;
+       }
+
+       //Print all transitions from here with their labels
+       os << "Available Transitions: " << endl;
+       for (unsigned int k = 0; k < availableTransitions.size(); k++){
+            TATransition * transition = availableTransitions[k];
+            transition -> list(os);
+       }
+
+       os << " } " << endl;
+#endif 
+
+} 
 
 
 bool TAState::isPortReady(TAPort * port){
@@ -82,6 +142,7 @@ bool TAState::isPortReady(TAPort * port){
 
 vector<TAPort *> TAState::getReadyPorts(){
 
+     //Clone and return (to prevent illegal external modification)
      vector <TAPort *> clone (readyPorts);
      return clone;
 
