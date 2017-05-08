@@ -9,83 +9,56 @@
 #include "Component/TAComponent.h"
 #include "Component/TAPort.h"
 #include "Statement/TAStatement.h"
-#include "Expression/Formula.h"
+#include "Statement/TAConcurrentListOfStatements.h"
+#include "Expression/TAFormula.h"
+//#include "Expression/TALAnd.h"
 #include "base/Evaluable.h"
 #include "base/Listable.h"
+
+/*  Represents an abstraction of an interaction between LTS components.  */
 
 class TAInteraction : public Listable, public Evaluable {
 
 	private:
-//		vector <TAComponent* > components;
+
+                static unsigned int nextId;
+
+                unsigned int interactionId;
+                string interactionName;
+
+		vector <TAComponent* > components;
 		vector <TAPort* > ports;
 		map <TAComponent*, TAPort*> comp2Port;	
 
 		TAStatement * statement;
-		TAFormula * guard;
+		TATerm * guard;
 
 	public:
 
-		TAInteraction (TAStatement * s = NULL, TAFormula * g = NULL){
+                //Constructor
+		TAInteraction (string name = "", TAStatement * s = NULL, TATerm * g = NULL);
 
-			statement = s;
-			guard = g;	
-		}
+                virtual void list(ostream & os);
 
+                //Determines if this interaction is 'ready' to be executed or not
+                bool isReady();
 
-		bool addPort (TAPort * port){
+                //Executes this interaction
+                virtual void evaluate();
 
-                      	assert (port != NULL && port -> getComponent() != NULL);
-			TAComponent * component = port -> getComponent();
-			
-			if (comp2Port[component] != NULL){
-				return false;
-			}
-
-			comp2Port[component] = port;
-			ports.push_back(port);
-
-			return true;
-		}
-		
+                //Implicitly adds the corresponding component
+		bool addPort (TAPort * port);
+	
 		TAStatement * getStatement(){
 			return statement;
 		}
 
-		TAFormula * getGuard(){
+		TATerm * getGuard(){
 			return guard;
 		}
 
-		#if 0
-			void addStatement(TAAtomicStatement * newStatement){
-			
-				if (statement == NULL){
-					statement = newStatement;
-					return;
-				}
+	        void addStatement(TAAtomicStatement * newStatement);
 
-				if (newStatement == NULL){
-					return;
-				}
-\					
-				if (newStatement -> isLoop() ||newStatement -> isConditional()){
-					return;
-				}
-				statement = new ConcurrentListOfStatements(newStatement, statement);
-			}
+	        void addGuard (TATerm * newCondition);
 
-			void addGuard (TAFormula * newCondition){
-				if (newCondition == NULL){
-					return;
-				}
-
-				if (guard == NULL){
-					guard = newCondtion;
-					return;
-				}
-
-				guard = new And(guard, newCondition);
-			}	
-		#endif
-
-		
 };
