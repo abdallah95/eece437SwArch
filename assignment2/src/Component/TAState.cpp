@@ -18,12 +18,12 @@ TAState::TAState(TAComponent * pComp, Trans2Label & t2l, string name) : trans2La
         if (name == ""){
 
             stringstream ss;
-            ss << "s" << stateId;
+            ss <<  "s" << stateId;
             stateName = ss.str();
 
         } else {
 
-          stateName = name;
+           stateName = name;
 
         }
 

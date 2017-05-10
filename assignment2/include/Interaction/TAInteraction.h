@@ -48,6 +48,10 @@ class TAInteraction : public Listable, public Evaluable {
 
                 //Implicitly adds the corresponding component
 		bool addPort (TAPort * port);
+
+                unsigned int getId(){
+                    return interactionId;
+                }
 	
 		TAStatement * getStatement(){
 			return statement;
@@ -61,4 +65,11 @@ class TAInteraction : public Listable, public Evaluable {
 
 	        void addGuard (TATerm * newCondition);
 
+                vector<TAPort *> & getPorts(){
+                     return ports;
+                }
+
+                vector<TAComponent *> & getComponents(){
+                     return components;
+                }
 };

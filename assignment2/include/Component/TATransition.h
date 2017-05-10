@@ -1,12 +1,11 @@
 #pragma once
 
+class TAState;
 #include "base/Listable.h"
 #include "TAState.h"
 #include "TAComponent.h"
 #include "TALabel.h"
 #include "TAPort.h"
-
-//TODO Consider implementing list method 
 
 class TAState;
 class TAComponent;

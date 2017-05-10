@@ -85,10 +85,6 @@ class TAComponent : public Listable, public Evaluable, public Clonable <TACompon
 			return currentState;
 		}
 
-                void printState(){
-                   currentState -> list(cout);
-                }
-
 		virtual TAComponent * clone();
 	
 		virtual void list(ostream & os);		
